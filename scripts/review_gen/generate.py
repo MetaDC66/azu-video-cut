@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""review_gen/generate.py — 三份 JSON 驱动的通用审片生成器（端到端版）。
+"""review_gen/generate.py — 三份 JSON 驱动的审片合成与交付生成器。
 
 输入：
   --master     master.json      母版路径 / fps / 时长 / 可选 expected_inode / style_overrides
@@ -15,7 +15,7 @@
   mix       --mix：调用 ../mix_finalize.py 混音收口（BGM 需用 --bgm 显式传入，
             --voice-i 可覆盖人声目标，含长静音段窗口用 -13.2）
 
-端到端用法：
+从已确认关键帧工程到交付的用法：
   python3 generate.py --master master.json --subtitles subtitle-timeline.json \
       --overlay overlay-timeline.json --keyframes <N>-master/hyperframes-keyframes \
       --start 10 --end 20 --name review-sample-10-20 --title "第N条·10至20秒抽检" \

@@ -1,4 +1,6 @@
-# review_gen — 三份 JSON 驱动的审片工程生成器（端到端）
+# review_gen — 三份 JSON 驱动的审片合成与交付生成器
+
+> 输入必须包含已经确认的关键帧工程和三份时间线JSON。本工具负责合成、检查、渲染和混音，不自动创作或批准特效场景。
 
 - `generate.py` — 主程序：generate → check → render（超上限自动分段拼接）→ mix 四阶段，每阶段一行 JSON，失败即停
 - `hooks.py` — 场景类型钩子注册表（generic / magnifier / screenrec / brand_card）；新增类型 = 加一个钩子类并注册

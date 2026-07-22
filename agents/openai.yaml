@@ -1,0 +1,4 @@
+interface:
+  display_name: "Azu Video Cut"
+  short_description: "口播知识短视频字幕、特效、混音与交付工作流"
+  default_prompt: "Use $azu-video-cut to initialize and produce a reviewed talking-head video project."

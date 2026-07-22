@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "channel_name": "",
+  "platform": "douyin",
+  "closing_line": "",
+  "badge_path": "",
+  "bgm_path": "",
+  "caption_font": "Noto Sans JP",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": "follow-master"
+  },
+  "notes": "Only store non-sensitive project preferences. Never put API keys, cookies, tokens, account data, or private absolute paths here."
+}
