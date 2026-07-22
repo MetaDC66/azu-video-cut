@@ -99,7 +99,7 @@ def main():
         r = run(["ffmpeg","-y","-hide_banner","-loglevel","error",
                  "-i",a.video,"-i",a.bgm,"-filter_complex",fc,
                  "-map","0:v","-c:v","copy","-map","[out]",
-                 "-c:a","aac","-b:a","256k","-ar","48000",
+                 "-c:a","aac","-b:a","256k","-ar","48000","-ac","2",
                  "-movflags","+faststart",a.out])
         if r.returncode != 0:
             print(json.dumps({"ok":False,"stage":"encode","err":r.stderr[-500:]})); sys.exit(1)
@@ -117,7 +117,7 @@ def main():
                 run(["ffmpeg","-y","-hide_banner","-loglevel","error",
                      "-i",a.video,"-i",a.bgm,"-filter_complex",fc,
                      "-map","0:v","-c:v","copy","-map","[out]",
-                     "-c:a","aac","-b:a","256k","-ar","48000",
+                     "-c:a","aac","-b:a","256k","-ar","48000","-ac","2",
                      "-movflags","+faststart",a.out])
                 i2, tp2 = ebur128_measure(a.out)
                 attempts.append({"limiter":limiter,"fine_trim_db":round(delta,2),

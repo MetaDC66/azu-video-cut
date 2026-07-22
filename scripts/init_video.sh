@@ -8,14 +8,20 @@ if [ $# -lt 2 ]; then
   echo '{"ok":false,"error":"用法: init_video.sh <第N条> <母版路径> [--out-dir DIR]"}' >&2; exit 2
 fi
 LABEL="$1"; MASTER="$2"; OUTBASE="edit"
-if [ "${3:-}" = "--out-dir" ]; then OUTBASE="$4"; fi
+if [ "${3:-}" = "--out-dir" ]; then
+  [ $# -ge 4 ] || { echo '{"ok":false,"error":"--out-dir 缺少目录"}'; exit 2; }
+  OUTBASE="$4"
+fi
 
 case "$LABEL" in
   第一条) ORD=first;;  第二条) ORD=second;; 第三条) ORD=third;;
   第四条) ORD=fourth;; 第五条) ORD=fifth;;  第六条) ORD=sixth;;
   第七条) ORD=seventh;; 第八条) ORD=eighth;; 第九条) ORD=ninth;;
   第十条) ORD=tenth;;
-  *) echo "{\"ok\":false,\"error\":\"未识别序号: $LABEL（支持第一条~第十条）\"}"; exit 1;;
+  *)
+    ORD=$(printf '%s' "$LABEL" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]/-/g; s/^-*//; s/-*$//; s/--*/-/g')
+    [ -n "$ORD" ] || { echo "{\"ok\":false,\"error\":\"未识别序号或安全 slug: $LABEL\"}"; exit 1; }
+    ;;
 esac
 
 [ -f "$MASTER" ] || { echo "{\"ok\":false,\"error\":\"母版不存在: $MASTER\"}"; exit 1; }
@@ -28,7 +34,13 @@ DEST="$DIR/assets/$(basename "$MASTER")"
 if [ ! -e "$DEST" ]; then
   ln "$MASTER" "$DEST" 2>/dev/null || cp -p "$MASTER" "$DEST"
 fi
-INODE=$(stat -f '%i' "$DEST")
+if INODE=$(stat -f '%i' "$DEST" 2>/dev/null); then
+  :
+elif INODE=$(stat -c '%i' "$DEST" 2>/dev/null); then
+  :
+else
+  echo '{"ok":false,"error":"无法读取母版 inode"}'; exit 1
+fi
 ABS_DEST=$(cd "$(dirname "$DEST")" && pwd)/$(basename "$DEST")
 
 # ffprobe 实测规格
@@ -93,13 +105,6 @@ cat > "$DIR/overlay-timeline.json" <<EOF
   "scenes": [],
   "notes": "待填。scene.type 取值见 scripts/review_gen/hooks.py（generic/magnifier/screenrec/brand_card）"
 }
-EOF
-
-# token 记账文件（CHECKLIST.md「Token 记账」节：开工/交付各记一行）
-cat > "$DIR/token-log.md" <<EOF
-# 第$1条 · token 消耗记录
-| 时间 | 阶段 | 累计 token 读数 | 备注 |
-|---|---|---|---|
 EOF
 
 echo "{\"ok\":true,\"dir\":\"$DIR\",\"duration_s\":$DUR,\"fps\":$FPS,\"resolution\":\"${W}x${H}\",\"inode\":$INODE}"
