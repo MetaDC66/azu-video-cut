@@ -61,4 +61,4 @@ azu-video-cut/
 
 ## License
 
-MIT（待确认 / TBD）— © azu-video-cut contributors
+MIT — © azu-video-cut contributors（见 LICENSE 文件）
