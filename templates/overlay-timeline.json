@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "source": "/absolute/path/to/锁定母版.mp4",
+  "output": { "width": 1920, "height": 1080, "fps": 60 },
+  "speed": 1.0,
+  "overlay_opacity": 0.9,
+  "scenes": [],
+  "notes": "待填。每个 scene 需 id/start/end/type/content/asset/payoff；type 取值见 scripts/review_gen/hooks.py（generic/magnifier/screenrec/brand_card），screenrec 场景加 video 字段"
+}

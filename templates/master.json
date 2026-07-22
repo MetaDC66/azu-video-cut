@@ -1,0 +1,7 @@
+{
+  "path": "/absolute/path/to/锁定母版.mp4",
+  "fps": 60,
+  "duration": 0.0,
+  "expected_inode": 0,
+  "note": "由 scripts/init_video.sh 自动生成（path/fps/duration/expected_inode 均为 ffprobe/stat 实测值）；style_overrides 可覆盖 defaults.py 提亮色"
+}

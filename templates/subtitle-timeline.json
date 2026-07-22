@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "source": "/absolute/path/to/锁定母版.mp4",
+  "output": { "width": 1920, "height": 1080, "fps": 60 },
+  "language": "zh-CN",
+  "style": {
+    "font_family": "Noto Sans JP",
+    "font_size_px": 62,
+    "two_line_font_size_px": 57,
+    "font_weight": 700,
+    "primary_color": "#FFF8EA",
+    "accent_color": "#F2B84B",
+    "risk_color": "#EF514A",
+    "background": "rgba(8, 10, 14, 0.82)",
+    "bottom_margin_px": 82,
+    "max_width_percent": 72,
+    "max_lines": 2,
+    "note": "字幕在所有覆盖层之后最后合成。底部约 154px 为字幕安全区。字幕不使用标点符号。"
+  },
+  "corrections": [],
+  "highlight": { "accent": [], "risk": [] },
+  "cues": []
+}
