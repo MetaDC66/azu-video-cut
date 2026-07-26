@@ -33,6 +33,15 @@ if metadata["name"] != "azu-video-cut":
 if not isinstance(metadata["description"], str) or len(metadata["description"]) < 40:
     fail("description must explain capability and trigger contexts")
 
+required_safeguards = [
+    "观众理解检查",
+    "画面独立合规检查",
+    "机器预审只提供风险线索",
+]
+for safeguard in required_safeguards:
+    if safeguard not in skill_text:
+        fail(f"required visual safeguard missing from SKILL.md: {safeguard}")
+
 openai_yaml = (ROOT / "agents" / "openai.yaml").read_text(encoding="utf-8")
 if "default_prompt:" not in openai_yaml or "$azu-video-cut" not in openai_yaml:
     fail("agents/openai.yaml default_prompt must mention $azu-video-cut")

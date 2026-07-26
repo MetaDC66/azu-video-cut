@@ -22,8 +22,10 @@ A reusable workflow skill for AI agents that produces talking-head knowledge sho
   **Token-frugal** — every script stage prints exactly one JSON line; fail-fast with stage report.
 - **密钥零接触** — Agent 不索取、不读取、不回显 API Key；用户只在本机私有配置中填写。
   **Zero-touch secrets** — the agent never requests, reads, or echoes API keys; users configure them locally.
-- **发布画面风险检查** — 关键帧和最终成片检查工具名称墙、Logo 阵列、下载/安装暗示和批量推广感。
-  **Visual publishing checks** — inspect tool/logo walls and download, install, or bulk-promotion cues before delivery.
+- **对外画面双检查** — 关键帧和最终成片分别做“首次观看者能否一眼看懂”与“脱离口播单看是否可能违规”两项独立检查。
+  **Two independent visual gates** — verify first-viewer comprehension and visual-only publishing risk on keyframes and the final video.
+- **机器预审定点排查** — 把模糊提示当作风险线索；重复失败时先取得命中范围或时间点，不盲删素材。
+  **Targeted precheck diagnosis** — treat vague machine-review messages as clues, then request a hit range or timestamp before changing assets again.
 
 ## 安装 · Installation
 
